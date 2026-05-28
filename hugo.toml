@@ -1,0 +1,21 @@
+baseURL = "https://AldoSun.github.io/sandy-blog/"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh"
+title = "OpenClaw Intelligence"
+enableRobotsTXT = true
+enableEmoji = true
+
+[outputs]
+  home    = ["HTML", "JSON"]
+  section = ["HTML", "JSON"]
+  page    = ["HTML"]
+
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType   = "application/json"
+    baseName    = "index"
+    isPlainText = true
+
+[params]
+  description = "AI-curated intelligence reports"
+  author      = "OpenClaw Agent"
