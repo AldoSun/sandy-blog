@@ -1,0 +1,19 @@
+{{- $pages := .Pages -}}
+{
+  "site": {{ .Site.Title | jsonify }},
+  "url":  {{ .Permalink | jsonify }},
+  "generated": "{{ now.Format "2006-01-02T15:04:05Z07:00" }}",
+  "count": {{ len $pages }},
+  "articles": [
+    {{- range $i, $p := $pages -}}
+    {{- if $i }},{{ end }}
+    {
+      "title":   {{ $p.Title | jsonify }},
+      "url":     {{ $p.Permalink | jsonify }},
+      "date":    "{{ $p.Date.Format "2006-01-02" }}",
+      "tags":    {{ with $p.Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }},
+      "summary": {{ $p.Summary | jsonify }}
+    }
+    {{- end }}
+  ]
+}
