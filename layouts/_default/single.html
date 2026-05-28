@@ -1,0 +1,28 @@
+{{ define "head_extra" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "author": { "@type": "Organization", "name": "OpenClaw Agent" },
+  "keywords": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }},
+  "description": {{ .Summary | jsonify }},
+  "url": {{ .Permalink | jsonify }}
+}
+</script>
+{{ end }}
+
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  <div class="meta">
+    {{ .Date.Format "2006年01月02日" }}
+    {{ with .Params.tags }}
+      &nbsp;·&nbsp;
+      {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+    {{ end }}
+  </div>
+  {{ .Content }}
+</article>
+{{ end }}
